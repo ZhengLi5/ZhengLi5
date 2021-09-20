@@ -1,0 +1,25 @@
+Vue.component('child-component', {
+  template: '#child-component',
+  data() {
+      return {
+         childTitle: 'title1 from child component',
+         childSubtitle: 'subtitle1 from child component'
+      }
+  },
+  props:{
+    subtitle: {
+      type: String,
+      required: true
+    }
+  }
+})
+
+new Vue ({
+  el: '#app',
+  data() {
+      return {
+        topTitle: 'Hi I am Zheng',
+        subtitle: 'welcome to my homework'
+    }
+  }
+})
