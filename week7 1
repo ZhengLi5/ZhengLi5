@@ -1,0 +1,32 @@
+#app
+
+
+
+ Vue.component('global-componet', {
+         template: '<div><p>this is Global Registration</p><button v-on:click="dosys">Say</button></div>',
+        delimiters: ['${','}'],
+         data:function () {
+          return {
+             msg:'Hi , this is Global Registration',
+          }
+         },
+        methods: {
+           dosys: function () {   
+             
+            alert('Global Registration')
+          }
+        },
+       
+      });
+
+ var componentlocal = { 
+      template:  '<div><br/><p>This is Local Component Message</p></div>'
+    };
+let vm = new Vue({
+  el:'#app',
+  components: {
+     'component-local':componentlocal
+  },
+  template: `<div><component-local/><global-componet/></div>`
+ 
+});
