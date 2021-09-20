@@ -1,0 +1,32 @@
+<div id="app">
+
+ <h1>{{title}}</h1>
+
+    <child-component yourname="Zheng" :age="20"></child-component>
+</div>
+
+
+
+
+  Vue.component('childComponent', {
+    props:{
+       yourname:{
+        type: String,
+        required: true
+      },
+      age:{
+        type: Number,
+        default: 18
+      }
+    },
+    template: '<div>{{yourname}} age is {{age}}</div>'
+ })
+
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      title: 'Task 2: Coding Props'
+    }
+  }
+})
