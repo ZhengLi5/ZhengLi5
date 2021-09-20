@@ -1,0 +1,22 @@
+
+  
+   Balls:
+  <div id="balls"></div>
+Deal after Balls:
+  <div id="dealballs"></div>
+
+
+
+
+
+
+var x = 8989;
+var y=100;
+(x+y).toString();
+(8868).toString();
+var balls = ["Football", "Baskball", "Badminton","Tennis"];
+balls.push("Rugby");
+document.getElementById("balls").innerHTML = balls.join(" - "); 
+balls.shift();
+balls.push("Volleyball");
+document.getElementById("dealballs").innerHTML = balls.join(" - "); 
