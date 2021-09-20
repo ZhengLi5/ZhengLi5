@@ -1,0 +1,99 @@
+html:
+<div id="v-model" class="demo">
+      <h1>{{title}}</h1>
+    <h2>Form User</h2>
+   <p>Name: {{ name }}</p>
+   <p>Email: {{ email }}</p>
+   <p>Pasword: {{ password }}</p>
+   <form-user
+    v-model:name="name"
+    v-model:email="email"
+    v-model:password="password"
+  ></form-user>
+</div>
+
+
+
+
+
+css:
+.demo {
+  font-family: sans-serif;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  padding: 20px 30px;
+  margin-top: 1em;
+  margin-bottom: 40px;
+  user-select: none;
+  overflow-x: auto;
+}
+ form{
+    width:700px;
+    margin:0 auto;
+    text-align:left;
+  }
+  .input{
+        width: 100%;
+    padding: 0.5em;
+    margin: 1em 0;
+    text-indent: 1.1em;
+    display: inline-block;
+    border: 1px solid lightskyblue;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 0.1em;
+    line-height: 1.1em;
+    font-size: 1.2em;
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  JS:
+  const FormUser = {
+  props: {
+    name: String,
+    email: String,
+    password:String,
+  },
+  template: `
+  <label >Name:</label><br>
+    <input 
+      type="text"
+      :value="name"
+      @input="$emit('update:name', $event.target.value)" class="input" ><br>
+      <br>
+ <label >Password:</label><br>
+       <input  
+       type="password"
+       :value="password" 
+       @input="$emit('update:password', $event.target.value)" class="input" >
+       <br>
+ <label >Email:</label><br>
+    <input
+      type="text"
+      :value="email"
+      @input="$emit('update:email', $event.target.value)" class="input" >
+  `
+};
+
+const MyVueApp = {
+  components: {
+    FormUser,
+  },
+  data() {
+    return {
+      name: 'Tom',
+      email: 'Zheng@gmail.com',
+      title:"Task 3: Custom Events",
+      password:"qa"
+    };
+  },
+};
+
+Vue.createApp(MyVueApp).mount('#v-model')
