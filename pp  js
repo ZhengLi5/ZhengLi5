@@ -1,0 +1,170 @@
+function startVideo() {
+  if (navigator.mediaDevices && 
+      navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({video: true})
+      .then(handleUserMediaSuccess)
+      .catch(handleUserMediaError);
+  }
+}
+
+function handleUserMediaError(error){
+  console.log(error);
+}
+
+function handleUserMediaSuccess(stream){
+  var video = document.getElementById("myVideo");
+  video.srcObject = stream;
+  // video.play();
+  console.log("success");
+  window.setInterval(captureImageFromVideo, 200);
+}
+
+function captureImageFromVideo() {
+  const canvas = document.getElementById("mainCanvas");
+  const canvas1 = document.getElementById("mainCanvas");
+  const context = canvas.getContext("2d");
+  const context1 = canvas1.getContext("2d");
+  const video = document.getElementById("myVideo");
+  const video1 = document.getElementById("myVideo");
+  canvas.setAttribute("width", video.width);
+  canvas.setAttribute("height", video.height);  
+  // Draw video image onto Canvas
+  canvas1.setAttribute("width", video1.width);
+  canvas1.setAttribute("height", video1.height);  
+  context.drawImage(video, 0, 0, video.width, video.height);
+  context1.drawImage(video1, 0, 0, video1.width, video1.height);
+    
+   
+ }
+  
+
+  
+function start_smile(){
+    mouth.style.visibility = "hidden";
+    Smile.style.visibility = "visible";
+    LeftEye.style.visibility ="visible";
+    RightEye.style.visibility = "visible";
+}
+
+function close_smile(){
+   mouth.style.visibility = "visible";
+    Smile.style.visibility = "hidden";
+    LeftEye.style.visibility = "hidden";
+    RightEye.style.visibility = "hidden";
+}
+// Register a callback for when a detection is updated in the database
+
+
+
+var story = ["A woman finds a pot of treasure on the road while she is returning from work. Delighted with her luck, she decides to keep it. As she is taking it home, it keeps changing. However, her enthusiasm refuses to fade away.", "A man goes to the doctor and says, Doctor, wherever I touch, it hurts.The doctor asks, What do you mean? The man says, When I touch my shoulder, it really hurts. If I touch my knee - OUCH! When I touch my forehead, it really, really hurts.The doctor says, I know what's wrong with you - you've broken your finger!  ", "Two boys were arguing when the teacher entered the room. The teacher says, Why are you arguing? One boy answers, We found a ten dollor bill and decided to give it to whoever tells the biggest lie.You should be ashamed of yourselves, said the teacher, When I was your age I didn't even know what a lie was.The boys gave the ten dollars to the teacher.", "On 1st April many people play jokes on their friends and others by creating stories that are not true and hoping that people will believe them. The convention is that an April Fool's Joke must be perpetrated before noon on 1st April. Here are three published by EnglishClub. Many people fell for these jokes (they believed them), as you can see from the comments. Other people realized the stories were not true but enjoyed them anyway. And some people were very, very angry."];
+ 
+var numberR = Math.floor(Math.random() * 3);
+var mouth = document.getElementById("mouth");
+var Smile = document.getElementById("Smile");
+var LeftEye = document.getElementById("LeftEye");
+var RightEye = document.getElementById("RightEye");
+  //console.log(numberR);
+
+function StoryClick() {
+  speak(story[numberR],"en-US");
+  var storyword = document.getElementById("StoryList");
+   storyword.innerHTML = "story said: " + story[numberR];
+  
+}
+
+function startVideoDetection(){
+  startVideo(); 
+}
+
+ function speak(text, lang) {
+   /*Check that your browser supports test to speech*/
+   // var synth = window.speechSynthesis;
+   if ('speechSynthesis' in window) {
+    var msg = new SpeechSynthesisUtterance();
+    const voices = window.speechSynthesis.getVoices();
+     if (voices.length > 0) {
+       console.log("Your browser supports " + voices.length + " voices");
+       console.log(voices);
+       msg.voice = voices.filter(function(voice) { return voice.lang == lang; })[1];
+     }
+     msg.voiceURI = 'native';
+     msg.volume = 0.8; // 0 to 1
+     msg.rate = 0.8; // 0.1 to 10
+     msg.pitch = 1.0; //0 to 2
+     msg.text = text;
+     msg.lang = lang;
+     msg.onend = function(e) {
+       console.log('Finished in ' + e.elapsedTime + ' milliseconds.');
+     };
+     speechSynthesis.speak(msg);  
+   }
+ }
+
+//var inputSpeech = event.results[0][0].transcript;
+
+var grammar =
+  "#JSGF V1.0; grammar emar; public <greeting> = hello | hi; <person> = maya | alisa;";
+var recognition = new window.webkitSpeechRecognition();
+var speechRecognitionList = new window.webkitSpeechGrammarList();
+speechRecognitionList.addFromString(grammar, 1);
+recognition.grammars = speechRecognitionList;
+recognition.continuous = true;
+recognition.lang = "en-US";
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
+
+  
+function startRecognition() {
+  recognition.start();
+};
+
+recognition.onresult = processSpeech;
+
+function processSpeech(event) {
+  var inputSpeech = event.results[0][0].transcript;  
+  var textDiv = document.getElementById("robotTalk");
+  var textDiv1 = document.getElementById("robotAnswer");
+  textDiv.innerHTML = "you said: " + inputSpeech
+  recognition.stop();
+  if (inputSpeech == "stop") {
+    textDiv1.innerHTML = "Ok, I will stop it";
+    stopStory();
+  }
+  if (inputSpeech == "continue") {
+    textDiv1.innerHTML = "Ok, I will continue it";
+    ResumeStory();
+  }
+  if (inputSpeech == "finish story") {
+    textDiv1.innerHTML = "Ok, I will cancel it";
+    CancelStory();
+  }
+}
+
+recognition.onend = recognitionEnded;
+
+function recognitionEnded() {
+  console.log("onend happened");
+  recognition.stop();
+}
+
+function stopStory() {
+   if ('speechSynthesis' in window) {
+     window.speechSynthesis.pause();
+     console.log("stopsucess");
+   }
+}
+
+function ResumeStory() {
+  if ('speechSynthesis' in window) {
+     window.speechSynthesis.resume();
+     console.log("resumesuccess");
+   }
+}
+
+function CancelStory() {
+  if ('speechSynthesis' in window) {
+     window.speechSynthesis.cancel();
+     console.log("resumesuccess");
+   }
+}
