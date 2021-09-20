@@ -1,0 +1,81 @@
+<!-- Use preprocessors via the lang attribute! e.g. <template lang="pug"> -->
+<template>
+  <div id="app">
+    <h1>{{title}}</h1>
+    
+    <h2>CheckBox</h2>
+    <form>
+        
+      <input type="checkbox" id="football" value="football" v-model="checkbox">
+<label for="football">football</label>
+<input type="checkbox" id="basketball" value="basketball" v-model="checkbox">
+<label for="basketball">basketball</label>
+      <input type="checkbox" id="golf " value="golf" v-model="checkbox">
+<label for="golf">golf </label>
+         <input type="checkbox" id="softball" value="softball" v-model="checkbox">
+<label for="softball ">softball  </label>
+      <br/>
+      <span>Checked names: {{ checkbox }}</span>
+
+    </form>
+   
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      title: 'Task 2: Checkbox in your project',
+      
+      checkbox:[],
+      selected:''
+    };
+  },
+  methods: {
+    
+  }
+};
+</script>
+
+<!-- Use preprocessors via the lang attribute! e.g. <style lang="scss"> -->
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+a,
+button {
+  color: #4fc08d;
+}
+
+button {
+  background: none;
+  border: solid 1px;
+  border-radius: 2em;
+  font: inherit;
+  padding: 0.75em 2em;
+}
+  form{
+    width:700px;
+    margin:0 auto;
+    text-align:left;
+  }
+  .input{
+        width: 100%;
+    padding: 0.5em;
+    margin: 1em 0;
+    text-indent: 1.1em;
+    display: inline-block;
+    border: 1px solid lightskyblue;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 0.1em;
+    line-height: 1.1em;
+    font-size: 1.2em;
+
+  }
+</style>
