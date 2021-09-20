@@ -1,0 +1,94 @@
+<html>
+  
+  <head>
+     <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  </head>
+<body >
+<div class=wrapper>
+  <div class ="top">
+    <h1> Amazon Story Robot </h1>
+     <center> <img src="https://trueinteractive.com/wp-content/uploads/2018/07/amazondeal-1400x600@2x.jpg"> </center>
+     <div id="Who"></div>
+     <div id="Smiling"></div>
+    <div id="robotTalk"></div>
+  </div>
+
+<div class ="middle">
+<!--   Left side -->
+  
+  <div class="leftbox">
+    <div>
+   <svg id="faceSVG" width="500px" height="330px">
+         
+          <ellipse id="leftEye" cx="130" cy="50" rx=40 ry = 40 fill="black"> </ellipse> 
+            
+          <circle id="LeftEye" cx="130" cy="50" r=30 fill="white"></circle>
+        <ellipse id="leftSmallEye" cx="130" cy="50" rx=9 ry=9 fill="black"></ellipse>
+          <ellipse id="rightEye" cx="380" cy="50" rx=40 ry = 40 fill="black"></ellipse>
+           <circle id="RightEye" cx="380" cy="50" r=30 fill="white"></circle>
+          
+          <ellipse id="rightSmallEye" cx="380" cy="50" rx=9 ry=9 fill="black"></ellipse>
+          
+           
+          <circle id="SmallEye" cx="250" cy="150" r=40 fill="black"></circle>
+           
+<rect id="mouth" x="210" y="240" width="80" height="80"
+ 
+style="fill:white;stroke:black;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" 
+visibility="visible"></rect>
+ 
+<rect  x="90" y="0" width="330" height="320"
+ 
+style="fill:white;stroke:black;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"></rect>
+          
+ 
+       
+  <path id="Smile" d="M202,260 a1,1 0 0,0 100,0" fill="black" />
+      
+   
+          
+        </svg></div>
+    <div>
+     <button type="button" onclick="StoryClick()">Listen to stories!</button>
+       <button type="button" onclick="start_smile()">Make me smile</button>
+       </div>
+    <div>
+    <button type="button" onclick="startRecognition()">Control Story</button>
+      <button type="button" onclick="close_smile()">Close my eyes</button>
+    </div>
+  </div>
+<!--   Right side -->
+  <div class="rightbox">
+    <div>
+     <canvas id="mainCanvas" height=200 width=280></canvas>
+      </div>
+    <div>
+      <button type="button" onclick="startVideoDetection()">Start video</button>
+      </div>
+          
+          <video id="myVideo" width="280" height="200" autoplay="true" hidden>
+    </video>
+      
+    <br>Welcome to Amazon Stroy Robot, you can control story by your voice. Just click button. You can say <strong>"stop","continue", and "finish story" </strong>to control that.</br>
+       <br>Remmeber do not leave your seat when you are listening to stories. <strong>The camera would detect your face.</strong> </br>
+       <br>If you like stories, just <strong>smile!</strong>  Very appreciate it!
+    </br>
+    </div> <!-- End rightbox-->
+   
+  </div> <!-- Ends Middle-->
+
+  <div class="bottom">
+    <div class = question>
+      
+    <div id="robotAnswer"></div>
+      <div id="robotTalkStory"></div>
+      <div id="StoryList"></div>
+       <font size ="5"> While you listen to stories, you can see stories words in here. <strong>Random Stories!</strong> </font>
+    </div> <!--End Question -->
+  </div> <!--End Bottom -->
+ 
+    
+
+</div> <!-- Ends wrapper -->
+</body>
+</html>
