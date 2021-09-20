@@ -1,0 +1,64 @@
+<!-- Use preprocessors via the lang attribute! e.g. <template lang="pug"> -->
+<template>
+  <div id="app">
+    <h1>{{message}}</h1>
+
+   
+   <p v-if="seen">Conditionally renders the element or Vie</p>
+   <p v-else="seen"> Conditionally renders the else block of a v-if directive.</p>
+    
+    <p v-show="seen">V-show : Conditionally display an element or View.</p>
+    <div class="course">
+    <p>Course:</p>
+  
+      <table>
+        <tr v-for="course in courses"> 
+         <td>{{course.text}}</td>
+      </tr>
+  </table>
+  </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: 'Task 2 –Conditionals and Loops',
+      seen:true,
+       courses: [
+      { text: 'Html' },
+      { text: 'Vue' },
+      { text: 'CSS' },
+      { text: 'React' }
+    ]
+    };
+  }
+};
+</script>
+
+<!-- Use preprocessors via the lang attribute! e.g. <style lang="scss"> -->
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+a,
+button {
+  color: #4fc08d;
+}
+
+button {
+  background: none;
+  border: solid 1px;
+  border-radius: 2em;
+  font: inherit;
+  padding: 0.75em 2em;
+}
+  .course{
+    text-align:left;
+  }
+</style>
