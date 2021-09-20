@@ -1,0 +1,28 @@
+function getDateTime(){
+  var date=new Date();
+  alert(date);
+}
+
+function checkfrom(){
+   var   name=document.getElementById("name").value;
+  console.log(name);
+  if(name=="")
+    {
+      alert("name is not null");
+       return false;
+    }
+   
+  else{
+        return true;
+  }
+}
+//ry to create a JavaScript page that lists scores of a student, calculate total score and display average.
+var students=[{"name":"tom","score":80},{"name":"alice","score":90},{"name":"hill","score":100}];
+var totalScores=0;
+for(var i=0;i<students.length;i++){
+   var obj=students[i];
+  totalScores+=obj.score;
+   console.log(obj.score);
+}
+console.log("total Scores:"+totalScores);
+document.getElementById("totalscore").innerHTML ="Total Scores is "+totalScores;
